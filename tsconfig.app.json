@@ -1,0 +1,20 @@
+{
+  "compilerOptions": {
+    "target": "ES2020",
+    "useDefineForClassFields": true,
+    "lib": ["ES2020", "DOM", "DOM.Iterable","dom"],  // DOM is included, which should fix the 'document' error
+    "module": "ESNext",
+    "skipLibCheck": true,
+    "composite": true,  // Required for project references
+    "declaration": true, // Declaration files will be generated
+    "emitDeclarationOnly": false, // Change to false so JS files are emitted as well (important for Vite)
+    "outDir": "./dist",
+    "jsx": "react-jsx",  // Supports JSX in React
+    "baseUrl": ".",  // Allows path resolution
+    "paths": {
+      "@/*": ["src/*"]  // Ensure the alias matches your folder structure
+    }
+  },
+  "include": ["src/**/*.ts", "src/**/*.tsx",  "src/**/*.jsx"],  // Ensure all TypeScript and TSX files are included
+  "types": ["vite/client"]  // Include Vite client types to avoid Vite-specific errors
+}
