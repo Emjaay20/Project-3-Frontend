@@ -17,7 +17,7 @@ import {
   BarChart,
   Bar,
 } from "recharts";
-// import { GetHeartRatesResponse, MonthlyHeartRateData } from "@/states/types";
+import { GetHeartRatesResponse, MonthlyHeartRateData } from "@/types";
 
 const Row2 = () => {
   const { palette } = useTheme();

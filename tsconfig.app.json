@@ -1,20 +1,30 @@
 {
   "compilerOptions": {
+    "tsBuildInfoFile": "./node_modules/.tmp/tsconfig.app.tsbuildinfo",
     "target": "ES2020",
     "useDefineForClassFields": true,
-    "lib": ["ES2020", "DOM", "DOM.Iterable","dom"],  // DOM is included, which should fix the 'document' error
+    "lib": [
+      "ES2020",
+      "DOM",
+      "DOM.Iterable"
+    ],
     "module": "ESNext",
     "skipLibCheck": true,
-    "composite": true,  // Required for project references
-    "declaration": true, // Declaration files will be generated
-    "emitDeclarationOnly": false, // Change to false so JS files are emitted as well (important for Vite)
-    "outDir": "./dist",
-    "jsx": "react-jsx",  // Supports JSX in React
-    "baseUrl": ".",  // Allows path resolution
-    "paths": {
-      "@/*": ["src/*"]  // Ensure the alias matches your folder structure
-    }
+    /* Bundler mode */
+    "moduleResolution": "bundler",
+    "allowImportingTsExtensions": true,
+    "isolatedModules": true,
+    "moduleDetection": "force",
+    "noEmit": true,
+    "jsx": "react-jsx",
+    /* Linting */
+    "strict": false,
+    "noUnusedLocals": false,
+    "noUnusedParameters": false,
+    "noFallthroughCasesInSwitch": false,
+    "noUncheckedSideEffectImports": false
   },
-  "include": ["src/**/*.ts", "src/**/*.tsx",  "src/**/*.jsx"],  // Ensure all TypeScript and TSX files are included
-  "types": ["vite/client"]  // Include Vite client types to avoid Vite-specific errors
+  "include": [
+    "src"
+  ]
 }

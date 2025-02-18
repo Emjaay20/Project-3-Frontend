@@ -17,6 +17,7 @@ import {
   Bar,
   Legend,
 } from "recharts";
+import { GetBodyTemperaturesResponse, MonthlyBodyTemperatureData } from "@/types";
 
 const Row3 = () => {
   const { palette } = useTheme();
