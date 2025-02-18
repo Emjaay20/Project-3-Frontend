@@ -5,6 +5,7 @@ import regression, { DataPoint } from "regression";
 import DashboardBox from "@/components/DashboardBox";
 import FlexBetween from "@/components/FlexBetween";
 import { useGetHeartRatesQuery } from "@/states/api";
+import { GetHeartRatesResponse } from "@/types";
 
 const Predictions = () => {
   const { palette } = useTheme();

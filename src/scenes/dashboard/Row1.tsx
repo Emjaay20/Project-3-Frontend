@@ -1,10 +1,10 @@
 import React, { useMemo } from "react";
 import BoxHeader from "@/components/BoxHeader";
 import DashboardBox from "@/components/DashboardBox";
-import { 
+import {
   useGetOxygenSaturationsQuery,
   useGetBodyTemperaturesQuery,
-  useGetHeartRatesQuery 
+  useGetHeartRatesQuery
 } from "@/states/api";
 import { useTheme, Box, Typography } from "@mui/material";
 import {
@@ -21,6 +21,7 @@ import {
   BarChart,
   Bar
 } from "recharts";
+import { GetBodyTemperaturesResponse, GetHeartRatesResponse } from "@/types";
 
 /*********************************************************************
  * A small helper to flatten all monthlyData readings, sort by date,
@@ -112,7 +113,7 @@ const Row1 = () => {
       monthlyData: doc.monthlyData,
       dateKey: "date",
       valueKey: "value",
-      isDateString: true, 
+      isDateString: true,
     });
   }, [tempData]);
 
@@ -259,8 +260,8 @@ const Row1 = () => {
           <Typography variant="h5" color={palette.grey[100]}>
             {latestOxygenReading
               ? `SpO2: ${latestOxygenReading.value.toFixed(
-                  1
-                )}% (Date: ${new Date(latestOxygenReading.date).toLocaleString()})`
+                1
+              )}% (Date: ${new Date(latestOxygenReading.date).toLocaleString()})`
               : "SpO2: Loading..."}
           </Typography>
 
@@ -268,8 +269,8 @@ const Row1 = () => {
           <Typography variant="h5" color={palette.grey[100]}>
             {latestTempReading
               ? `Temperature: ${latestTempReading.value.toFixed(
-                  1
-                )} °C (Date: ${latestTempReading.date})`
+                1
+              )} °C (Date: ${latestTempReading.date})`
               : "Temperature: Loading..."}
           </Typography>
 
