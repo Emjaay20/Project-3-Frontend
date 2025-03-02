@@ -64,7 +64,7 @@ const Row3 = () => {
   return (
     <>
       {/* Average Body Temperature Chart */}
-      <DashboardBox gridArea="i">
+      <DashboardBox gridArea="g">
         <BoxHeader
           title="Average Body Temperature"
           subtitle="Displays the average body temperature per month"
@@ -91,7 +91,7 @@ const Row3 = () => {
       </DashboardBox>
 
       {/* Min/Max Body Temperature Chart */}
-      <DashboardBox gridArea="h">
+      <DashboardBox gridArea="i">
         <BoxHeader
           title="Body Temperature Min/Max"
           subtitle="Shows minimum and maximum body temperatures for each month"
@@ -127,7 +127,7 @@ const Row3 = () => {
       </DashboardBox>
 
       {/* Temperature Variability Chart */}
-      <DashboardBox gridArea="g">
+      <DashboardBox gridArea="h">
         <BoxHeader
           title="Temperature Variability (TVI)"
           subtitle="Analyzes daily fluctuations in body temperature"
