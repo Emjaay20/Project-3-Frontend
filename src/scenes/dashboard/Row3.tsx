@@ -46,15 +46,16 @@ const Row3 = () => {
     );
   }, [data]);
 
-  const bodyTemperatureReadings = useMemo(() => {
+  const temperatureVariability = useMemo(() => {
     return (
       data &&
       data[0]?.monthlyData.map(({ month, readings }) => {
-        const avgReading =
-          readings.reduce((sum, r) => sum + r.value, 0) / readings.length;
+        if (!readings.length) return { name: month.substring(0, 3), variability: 0 };
+        const mean = readings.reduce((sum, r) => sum + r.value, 0) / readings.length;
+        const variance = readings.reduce((sum, r) => sum + Math.pow(r.value - mean, 2), 0) / readings.length;
         return {
           name: month.substring(0, 3),
-          avgReading,
+          variability: Math.sqrt(variance).toFixed(2),
         };
       })
     );
@@ -63,7 +64,7 @@ const Row3 = () => {
   return (
     <>
       {/* Average Body Temperature Chart */}
-      <DashboardBox gridArea="g">
+      <DashboardBox gridArea="i">
         <BoxHeader
           title="Average Body Temperature"
           subtitle="Displays the average body temperature per month"
@@ -80,24 +81,11 @@ const Row3 = () => {
             }}
           >
             <CartesianGrid vertical={false} stroke={palette.grey[800]} />
-            <XAxis
-              dataKey="name"
-              tickLine={false}
-              style={{ fontSize: "10px" }}
-            />
-            <YAxis
-              tickLine={false}
-              axisLine={false}
-              style={{ fontSize: "10px" }}
-            />
+            <XAxis dataKey="name" tickLine={false} style={{ fontSize: "10px" }} />
+            <YAxis tickLine={false} axisLine={false} style={{ fontSize: "10px" }} />
             <Tooltip />
             <Legend />
-            <Line
-              type="monotone"
-              dataKey="average"
-              stroke={palette.primary.main}
-              dot={true}
-            />
+            <Line type="monotone" dataKey="average" stroke={palette.primary.main} dot={true} />
           </LineChart>
         </ResponsiveContainer>
       </DashboardBox>
@@ -129,43 +117,25 @@ const Row3 = () => {
                 <stop offset="95%" stopColor={palette.tertiary.main} stopOpacity={0.2} />
               </linearGradient>
             </defs>
-            <XAxis
-              dataKey="name"
-              tickLine={false}
-              style={{ fontSize: "10px" }}
-            />
-            <YAxis
-              tickLine={false}
-              axisLine={false}
-              style={{ fontSize: "10px" }}
-            />
+            <XAxis dataKey="name" tickLine={false} style={{ fontSize: "10px" }} />
+            <YAxis tickLine={false} axisLine={false} style={{ fontSize: "10px" }} />
             <Tooltip />
-            <Area
-              type="monotone"
-              dataKey="min"
-              stroke={palette.secondary.main}
-              fill="url(#colorMin)"
-            />
-            <Area
-              type="monotone"
-              dataKey="max"
-              stroke={palette.tertiary.main}
-              fill="url(#colorMax)"
-            />
+            <Area type="monotone" dataKey="min" stroke={palette.secondary.main} fill="url(#colorMin)" />
+            <Area type="monotone" dataKey="max" stroke={palette.tertiary.main} fill="url(#colorMax)" />
           </AreaChart>
         </ResponsiveContainer>
       </DashboardBox>
 
-      {/* Average Daily Readings Chart */}
-      <DashboardBox gridArea="i">
+      {/* Temperature Variability Chart */}
+      <DashboardBox gridArea="g">
         <BoxHeader
-          title="Average Daily Readings"
-          subtitle="Average daily body temperature readings per month"
-          sideText="Daily Readings"
+          title="Temperature Variability (TVI)"
+          subtitle="Analyzes daily fluctuations in body temperature"
+          sideText="Variability Indicator"
         />
         <ResponsiveContainer width="100%" height="100%">
           <BarChart
-            data={bodyTemperatureReadings}
+            data={temperatureVariability}
             margin={{
               top: 15,
               right: 25,
@@ -173,28 +143,10 @@ const Row3 = () => {
               bottom: 60,
             }}
           >
-            <defs>
-              <linearGradient id="colorAvgReading" x1="0" y1="0" x2="0" y2="1">
-                <stop offset="5%" stopColor={palette.primary[300]} stopOpacity={0.5} />
-                <stop offset="95%" stopColor={palette.primary[300]} stopOpacity={0.2} />
-              </linearGradient>
-            </defs>
-            <XAxis
-              dataKey="name"
-              tickLine={false}
-              style={{ fontSize: "10px" }}
-            />
-            <YAxis
-              tickLine={false}
-              axisLine={false}
-              style={{ fontSize: "10px" }}
-            />
+            <XAxis dataKey="name" tickLine={false} style={{ fontSize: "10px" }} />
+            <YAxis tickLine={false} axisLine={false} style={{ fontSize: "10px" }} />
             <Tooltip />
-            <Bar
-              dataKey="avgReading"
-              fill="url(#colorAvgReading)"
-              radius={[5, 5, 0, 0]}
-            />
+            <Bar dataKey="variability" fill={palette.warning.main} radius={[5, 5, 0, 0]} />
           </BarChart>
         </ResponsiveContainer>
       </DashboardBox>

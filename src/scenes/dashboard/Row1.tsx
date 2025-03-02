@@ -134,7 +134,7 @@ const Row1 = () => {
       {/***********************************************************************
        * 1) Average Oxygen Saturation
        ***********************************************************************/}
-      <DashboardBox gridArea="a">
+      <DashboardBox gridArea="c">
         <BoxHeader
           title="Average Oxygen Saturation"
           subtitle="Displays the average oxygen saturation per month"
@@ -240,7 +240,7 @@ const Row1 = () => {
       {/***********************************************************************
        * 3) Real-Time Live Readings for SpO2, Temp, Heart Rate
        ***********************************************************************/}
-      <DashboardBox gridArea="c">
+      <DashboardBox gridArea="a">
         <BoxHeader
           title="Real-Time Sensor Readings"
           subtitle="Similar to the ESP8266 OLED display"
